@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  public settings: { title: string, iconName: string }[] = []
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -23,5 +24,9 @@ export class AppComponent {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+    this.settings.push({ title: 'Настройка1', iconName: 'book' })
+    this.settings.push({ title: 'Настройка2', iconName: 'book' })
+    this.settings.push({ title: 'Настройка3', iconName: 'book' })
+    this.settings.push({ title: 'Настройка4', iconName: 'book' })
   }
 }

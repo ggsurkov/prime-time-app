@@ -1,3 +1,18 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu contentId="content" menuId="first" side="start">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Настройки</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+          <ion-item *ngFor="let param of settings">
+            <ion-icon [name]="param.iconName" slot="start"></ion-icon>
+            {{param.title}}
+          </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="content"></ion-router-outlet>
 </ion-app>
