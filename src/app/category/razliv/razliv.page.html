@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Разливное пиво</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToCart()">
+        <ion-icon name="cart"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Фильтр категорий</ion-label>
+    <ion-select multiple="true" cancelText="Nah" okText="Okay!" (ionChange)="filterBeers($event)">
+      <ion-select-option *ngFor="let cat of category" [value]="cat">{{cat}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let beer of beersView">
+      <ion-label>{{beer.name}}</ion-label>
+      <ion-label>{{beer.category}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons class="ion-justify-content-around">
+      <ion-button (click)="backToCategory()">Назад</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

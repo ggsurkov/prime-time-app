@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {NavController} from "@ionic/angular";
+import {RazlivPage} from "../category/razliv/razliv.page";
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,11 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
-
+  constructor(public nav: NavController) {}
+  public goToRazlivPage():void {
+    this.nav.navigateForward('/razliv');
+  }
+  public goToCart(): void {
+    this.nav.navigateBack('/cart');
+  }
 }

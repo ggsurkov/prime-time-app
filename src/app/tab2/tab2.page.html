@@ -3,6 +3,11 @@
     <ion-title>
      Каталог
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="goToCart()">
+        <ion-icon name="cart" slot="end"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -10,10 +15,10 @@
   <ion-grid>
     <ion-row>
       <ion-col size="6">
-        <ion-card>
+        <ion-card (click)="goToRazlivPage()">
           <img src="./assets/img/razliv.jpg" />
           <ion-card-header>
-            <ion-card-subtitle>Разливное пиво</ion-card-subtitle>
+            <ion-card-subtitle>Разливные напитки</ion-card-subtitle>
           </ion-card-header>
         </ion-card>
       </ion-col>

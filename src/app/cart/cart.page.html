@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Корзина</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let item of items">
+      <ion-card-header>
+        <ion-card-subtitle>{{item?.name}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-label>Цена: {{item?.price * item.count}}</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label>Cashback: {{(item?.price * item.count) * 0.02}}</ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons class="ion-justify-content-around">
+      <ion-button (click)="backToCategory()">Назад</ion-button>
+      <ion-button (click)="acceptCart()">Заказать</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
