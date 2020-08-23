@@ -16,12 +16,11 @@
       <ion-select-option *ngFor="let cat of category" [value]="cat">{{cat}}</ion-select-option>
     </ion-select>
   </ion-item>
-  <ion-list>
-    <ion-item *ngFor="let beer of beersView">
-      <ion-label>{{beer.name}}</ion-label>
-      <ion-label>{{beer.category}}</ion-label>
-    </ion-item>
-  </ion-list>
+  <app-item-card (itemChanged)="itemChanged($event)"
+                 *ngFor="let razlivItem of razlivView"
+                 [itemType]="itemTypesEnum.RAZLIV"
+                 [item]="razlivItem"
+                 [withButtons]="true"></app-item-card>
 </ion-content>
 
 <ion-footer>

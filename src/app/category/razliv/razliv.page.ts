@@ -1,5 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {NavController} from "@ionic/angular";
+import {RazlivViewModel} from "../../models/razliv-view.model";
+import {MeasureEnum} from "../../dictionary/measure.enum";
+import {RazlivTypesEnum} from "../../dictionary/razliv-types.enum";
+import {ItemTypesEnum} from "../../dictionary/item-types.enum";
+import {CartStorageService} from "../../storage/cart-storage/cart-storage.service";
 
 @Component({
     selector: 'app-razliv',
@@ -7,8 +12,11 @@ import {NavController} from "@ionic/angular";
     styleUrls: ['./razliv.page.scss'],
 })
 export class RazlivPage implements OnInit {
-    public beers: { name: string, category: string }[] = []
-    public beersView: { name: string, category: string }[] = []
+    public razlivTypes: typeof RazlivTypesEnum = RazlivTypesEnum;
+    public measure: typeof MeasureEnum = MeasureEnum;
+    public itemTypesEnum: typeof ItemTypesEnum = ItemTypesEnum;
+    public razliv: RazlivViewModel[] = []
+    public razlivView: RazlivViewModel[] = []
     public category: string[] = [
         'Светлое',
         'Темное',
@@ -22,53 +30,47 @@ export class RazlivPage implements OnInit {
         'Квас'
     ]
 
-    constructor(public nav: NavController) {
+    constructor(public nav: NavController, public cartStorageService: CartStorageService) {
     }
 
     ngOnInit() {
-        this.beers = this.initBeers();
-        this.beersView = this.initBeers();
-    }
-
-    private initBeers(): any[] {
-        return [
-            {name: 'IPA Number One', category: 'IPA'},
-            {name: 'Афанасий', category: 'Светлое'},
-            {name: 'Лидское', category: 'Светлое'},
-            {name: 'Крюгер', category: 'Темное'},
-            {name: 'Вайсберг', category: 'Пшеничное'},
-            {name: 'Эдинберг', category: 'Пшеничное'},
-            {name: 'Double Chocolate', category: 'Стаут'},
-            {name: 'NewCastle', category: 'Porter'},
-            {name: 'Kreek', category: 'Ламбик'},
-            {name: 'Сакура', category: 'Сидр'},
-            {name: 'Дюшес', category: 'Лимонад'},
-            {name: 'Квас Афанасий', category: 'Квас'},
-            {name: 'Квас Хлебный', category: 'Квас'}
-        ]
+        this.razliv = this.initBeers();
+        this.razlivView = this.initBeers();
     }
 
     public filterBeers(ev: any): void {
         if (ev.detail.value.length === 0) {
-            this.beersView = this.initBeers();
+            this.razlivView = this.initBeers();
         }
         if (ev.detail.value.length > 0) {
-            this.beersView = [];
-            this.beers.forEach((beer) => {
+            this.razlivView = [];
+            this.razliv.forEach((beer) => {
                 ev.detail.value.forEach((filteredCat: string) => {
-                    if (beer.category === filteredCat) {
-                        this.beersView.push(beer);
+                    if (beer.type === filteredCat) {
+                        this.razlivView.push(beer);
                     }
                 })
             })
         }
     }
 
-    public backToCategory():void {
+    public itemChanged(razlivItem: RazlivViewModel): void {
+        this.cartStorageService.updateItem(razlivItem);
+    }
+
+    public backToCategory(): void {
         this.nav.navigateBack('/tabs/tab2');
     }
 
     public goToCart(): void {
         this.nav.navigateBack('/cart');
+    }
+
+    private initBeers(): RazlivViewModel[] {
+        return [
+            new RazlivViewModel('Лидское', 90, this.razlivTypes.LIGHT, 0, 0, this.measure.LITER, '4,5%', 'IBU 10', '10%'),
+            new RazlivViewModel('Курская дуга', 150, this.razlivTypes.LIGHT, 0, 0, this.measure.LITER, '5,5%', 'IBU 15', '12%'),
+            new RazlivViewModel('Крюгер', 120, this.razlivTypes.DARK, 0, 0, this.measure.LITER, '5,0%', 'IBU 20', '13,5%'),
+        ]
     }
 }

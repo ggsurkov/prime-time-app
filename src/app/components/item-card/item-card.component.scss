@@ -1,0 +1,40 @@
+.title {
+  font-size: larger;
+  color: #2a2a2a;
+}
+
+.centered-column {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+}
+
+.centered-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row;
+}
+
+.price {
+  border-right: 1px solid #2ea7dc;
+  font-size: large;
+}
+
+.square {
+  font-size: xx-large;
+
+  &.add-btn {
+    border-right: 1px solid #61b361;
+    color: #61b361;
+  }
+
+  &.minus-btn {
+    border-right: 1px solid #fabcbc;
+    color: #fabcbc;
+  }
+}
+
+.no-padding {
+  padding: 0;
+}

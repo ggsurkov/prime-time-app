@@ -6,7 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { RazlivPageRoutingModule } from './razliv-routing.module';
 
-import { RazlivPage } from './razliv.page';
+import {RazlivPage} from './razliv.page';
+import {ItemCardComponent} from "../../components/item-card/item-card.component";
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { RazlivPage } from './razliv.page';
     IonicModule,
     RazlivPageRoutingModule
   ],
-  declarations: [RazlivPage]
+  declarations: [RazlivPage, ItemCardComponent]
 })
 export class RazlivPageModule {}

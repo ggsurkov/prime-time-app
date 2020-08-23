@@ -1,6 +1,8 @@
 {
   "name": "prime-time-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular",
   "id": "b7b80248"
 }
